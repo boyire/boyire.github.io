@@ -1,42 +1,132 @@
 ---
-layout: page
-description: "Thinking will not overcome fear but action will."
+layout: default
+description: "Projects, notes and experiments."
 ---
 
-{% for post in paginator.posts %}
-<div class="post-preview">
-    <a href="{{ post.url | prepend: site.baseurl }}">
-        <h2 class="post-title">
-            {{ post.title }}
-        </h2>
-        {% if post.subtitle %}
-        <h3 class="post-subtitle">
-            {{ post.subtitle }}
-        </h3>
-        {% endif %}
-        <div class="post-content-preview">
-            {{ post.content | strip_html | truncate:200 }}
+<main class="portfolio-home">
+    <section class="portfolio-hero" aria-labelledby="hero-title">
+        <canvas class="hero-canvas" data-portfolio-canvas aria-hidden="true"></canvas>
+        <div class="hero-backdrop" aria-hidden="true"></div>
+        <div class="hero-inner">
+            <p class="eyebrow">{{ site.hero_role }}</p>
+            <h1 id="hero-title">{{ site.title }}</h1>
+            <p class="hero-line">{{ site.tagline }}</p>
+            <p class="hero-summary">
+                A focused index for local prototypes, engineering notes, interaction experiments, and future public demos.
+            </p>
+            <div class="hero-actions">
+                <a class="action-primary" href="#projects">View Projects</a>
+                <a class="action-secondary" href="#writing">Read Notes</a>
+            </div>
         </div>
-    </a>
-    <p class="post-meta">
-        Posted by {% if post.author %}{{ post.author }}{% else %}{{ site.title }}{% endif %} on {{ post.date | date: "%B %-d, %Y" }}
-    </p>
-</div>
-<hr>
-{% endfor %}
+        <div class="hero-signal" aria-label="Site highlights">
+            <div>
+                <span>Focus</span>
+                <strong>AI / Frontend / Tools</strong>
+            </div>
+            <div>
+                <span>Build Mode</span>
+                <strong>Prototype to Product</strong>
+            </div>
+            <div>
+                <span>Base</span>
+                <strong>Local First</strong>
+            </div>
+        </div>
+    </section>
 
-<!-- Pager -->
-{% if paginator.total_pages > 1 %}
-<ul class="pager">
-    {% if paginator.previous_page %}
-    <li class="previous">
-        <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; Newer Posts</a>
-    </li>
-    {% endif %}
-    {% if paginator.next_page %}
-    <li class="next">
-        <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older Posts &rarr;</a>
-    </li>
-    {% endif %}
-</ul>
-{% endif %}
+    <section class="section-band intro-band" aria-labelledby="intro-title">
+        <div class="section-shell intro-grid">
+            <div>
+                <p class="section-kicker">CURRENT DIRECTION</p>
+                <h2 id="intro-title">A lab-style homepage for prototypes before they become public products.</h2>
+            </div>
+            <div class="intro-copy">
+                <p>The homepage keeps projects first, notes second, and public links disabled until each project is ready for deployment.</p>
+                <p>The visual system stays restrained and technical, using local assets and lightweight motion instead of third-party animation services.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-band projects-band" id="projects" aria-labelledby="projects-title">
+        <div class="section-shell">
+            <div class="section-heading">
+                <p class="section-kicker">FEATURED PROJECTS</p>
+                <h2 id="projects-title">Project Index</h2>
+            </div>
+            <div class="project-grid">
+                {% for project in site.projects %}
+                <article class="project-card">
+                    <div class="project-topline">
+                        <span>{{ project.type }}</span>
+                        <em>{{ project.status }}</em>
+                    </div>
+                    <h3>{{ project.title }}</h3>
+                    <p>{{ project.description }}</p>
+                    <div class="stack-row">
+                        {% for tech in project.stack %}
+                        <span>{{ tech }}</span>
+                        {% endfor %}
+                    </div>
+                    {% if project.href %}
+                    <a href="{{ project.href }}" target="_blank" rel="noopener noreferrer">打开项目</a>
+                    {% else %}
+                    <span class="project-pending">Local development</span>
+                    {% endif %}
+                </article>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <section class="section-band process-band" aria-labelledby="process-title">
+        <div class="section-shell process-grid">
+            <div>
+                <p class="section-kicker">WORKFLOW</p>
+                <h2 id="process-title">Project Notes Flow</h2>
+            </div>
+            <ol class="process-list">
+                <li>
+                    <span>01</span>
+                    <strong>Idea</strong>
+                    <p>Capture the problem, use case, and hypothesis.</p>
+                </li>
+                <li>
+                    <span>02</span>
+                    <strong>Build</strong>
+                    <p>Build a working version and preserve key implementation notes.</p>
+                </li>
+                <li>
+                    <span>03</span>
+                    <strong>Reflect</strong>
+                    <p>Review tradeoffs, defects, and next iteration paths.</p>
+                </li>
+            </ol>
+        </div>
+    </section>
+
+    <section class="section-band writing-band" id="writing" aria-labelledby="writing-title">
+        <div class="section-shell">
+            <div class="section-heading">
+                <p class="section-kicker">LATEST NOTES</p>
+                <h2 id="writing-title">Latest Notes</h2>
+            </div>
+            <div class="note-list">
+                {% if site.posts.size == 0 %}
+                <article class="note-empty">
+                    <span>Notes are being prepared.</span>
+                    <p>Future updates will include project retrospectives, implementation logs, and design notes.</p>
+                </article>
+                {% endif %}
+                {% for post in site.posts limit:6 %}
+                <article class="note-item">
+                    <a href="{{ post.url | prepend: site.baseurl }}">
+                        <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y.%m.%d" }}</time>
+                        <span>{{ post.title }}</span>
+                    </a>
+                </article>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+</main>

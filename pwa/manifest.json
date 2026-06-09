@@ -1,7 +1,7 @@
 {
-  "name": "BY Blog",
-  "short_name": "BY Blog",
-  "description": "A personal blog by engineer",
+  "name": "Project Lab | Projects & Notes",
+  "short_name": "Project Lab",
+  "description": "A quiet space for projects, notes, experiments, and build logs.",
   "icons": [{
     "src": "icons/pwa_icon_128.png",
     "sizes": "128x128",
@@ -11,8 +11,8 @@
     "sizes": "512x512",
     "type": "image/png"
   }],
-  "background_color": "#fff",
-  "theme_color": "#000",
+  "background_color": "#f7f5ef",
+  "theme_color": "#111827",
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait"

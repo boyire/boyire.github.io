@@ -68,7 +68,7 @@ description: "Projects, notes and experiments."
                         <span>{{ tech }}</span>
                         {% endfor %}
                     </div>
-                    {% if project.href %}
+                    {% if project.href and project.href != "" %}
                     <a href="{{ project.href }}" target="_blank" rel="noopener noreferrer">打开项目</a>
                     {% else %}
                     <span class="project-pending">本地开发中</span>

@@ -11,7 +11,7 @@
                 <a href="{{ site.baseurl }}/#projects">Projects</a>
                 <a href="{{ site.baseurl }}/#writing">Notes</a>
                 <a href="{{ site.baseurl }}/about/">About</a>
-                {% if site.github_repo %}
+                {% if site.github_repo and site.github_repo != "" %}
                 <a href="{{ site.github_repo }}" target="_blank" rel="noopener noreferrer">Source</a>
                 {% endif %}
             </div>

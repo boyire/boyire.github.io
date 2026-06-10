@@ -37,7 +37,7 @@
 <script type="text/javascript">
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker
-            .register('{{ "/sw.js" | prepend: site.baseurl }}')
+            .register('{{ "/sw.js?v=" | append: site.service_worker_version | prepend: site.baseurl }}')
             .catch(function (error) {
                 console.log('ServiceWorker registration failed: ', error);
             });

@@ -43,6 +43,7 @@ featured-condition-size: 1
 # Progressive Web Apps
 chrome-tab-theme-color: "#111827"
 service-worker: true
+service_worker_version: "20260610-2"
 
 # Projects shown on the homepage. Links stay empty until projects are deployed.
 projects:

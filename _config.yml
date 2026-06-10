@@ -8,6 +8,11 @@ keyword: "projects, notes, experiments, frontend, AI, GitHub Pages"
 url: ""
 baseurl: ""
 github_repo: ""
+repository_url: "https://github.com/boyire/boyire.github.io"
+profile_edit_url: "https://github.com/boyire/boyire.github.io/edit/master/_config.yml"
+about_edit_url: "https://github.com/boyire/boyire.github.io/edit/master/about.html"
+posts_edit_url: "https://github.com/boyire/boyire.github.io/tree/master/_posts"
+new_post_url: "https://github.com/boyire/boyire.github.io/new/master/_posts?filename=YYYY-MM-DD-new-note.md"
 
 # Profile
 tagline: "Turning ideas into working prototypes."

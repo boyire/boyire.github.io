@@ -6,6 +6,7 @@
   --line: rgba(18, 20, 23, 0.14);
   --teal: #0f766e;
   --cyan: #118ab2;
+  --violet: #7c5cff;
   --coral: #e85d4f;
   --signal: #d7b84b;
   --green: #5c8a52;
@@ -74,7 +75,10 @@ a {
   align-items: center;
   padding: 112px 24px 72px;
   color: var(--white);
-  background-image: linear-gradient(90deg, rgba(18, 20, 23, 0.88), rgba(18, 20, 23, 0.5) 48%, rgba(18, 20, 23, 0.76)), url("../img/home-bg-geek.jpg");
+  isolation: isolate;
+  background-image:
+    linear-gradient(90deg, rgba(9, 12, 18, 0.94), rgba(18, 20, 23, 0.58) 48%, rgba(9, 12, 18, 0.88)),
+    url("../img/home-bg-geek.jpg");
   background-size: cover;
   background-position: center;
 }
@@ -93,17 +97,30 @@ a {
   position: absolute;
   inset: 0;
   z-index: 1;
-  opacity: 0.75;
+  opacity: 0.95;
+  pointer-events: none;
+}
+
+.hero-vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background:
+    radial-gradient(circle at var(--hero-x, 50%) var(--hero-y, 50%), rgba(124, 92, 255, 0.22), transparent 25%),
+    radial-gradient(circle at 78% 18%, rgba(17, 138, 178, 0.22), transparent 22%),
+    linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.34) 100%);
+  mix-blend-mode: screen;
   pointer-events: none;
 }
 
 .hero-backdrop {
   position: absolute;
   inset: 0;
-  z-index: 2;
+  z-index: 3;
   background:
     linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+    linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.055) 0 1px, transparent 1px 8px);
   background-size: 56px 56px;
   mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent 82%);
   pointer-events: none;
@@ -111,9 +128,54 @@ a {
 
 .hero-inner {
   position: relative;
-  z-index: 3;
+  z-index: 5;
   width: min(1040px, 100%);
   margin: 0 auto;
+}
+
+.hero-hud {
+  position: absolute;
+  z-index: 4;
+  inset: 86px 24px 28px;
+  width: min(1180px, calc(100% - 48px));
+  margin: 0 auto;
+  pointer-events: none;
+}
+
+.hero-hud span {
+  position: absolute;
+  width: 82px;
+  height: 82px;
+  border-color: rgba(215, 184, 75, 0.72);
+  filter: drop-shadow(0 0 12px rgba(215, 184, 75, 0.32));
+}
+
+.hero-hud span:nth-child(1) {
+  top: 0;
+  left: 0;
+  border-top: 2px solid;
+  border-left: 2px solid;
+}
+
+.hero-hud span:nth-child(2) {
+  top: 0;
+  right: 0;
+  border-top: 2px solid;
+  border-right: 2px solid;
+}
+
+.hero-hud span:nth-child(3) {
+  bottom: 0;
+  left: 0;
+  border-bottom: 2px solid;
+  border-left: 2px solid;
+}
+
+.hero-hud span:nth-child(4) {
+  right: 0;
+  bottom: 0;
+  border-right: 2px solid;
+  border-bottom: 2px solid;
 }
 
 .eyebrow,
@@ -133,6 +195,7 @@ a {
   font-size: clamp(56px, 11vw, 138px);
   line-height: 0.92;
   letter-spacing: 0;
+  text-shadow: 0 0 28px rgba(255, 255, 255, 0.18), 0 0 64px rgba(124, 92, 255, 0.28);
 }
 
 .hero-line {
@@ -272,7 +335,10 @@ a {
 }
 
 .projects-band {
-  background: #fdfbf5;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(17, 138, 178, 0.12), transparent 28%),
+    radial-gradient(circle at 82% 20%, rgba(232, 93, 79, 0.1), transparent 26%),
+    #fdfbf5;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
 }
@@ -292,8 +358,11 @@ a {
   padding: 22px;
   border: 1px solid var(--line);
   border-radius: 8px;
-  background: var(--white);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(253, 251, 245, 0.9)),
+    var(--white);
   box-shadow: 0 14px 36px rgba(18, 20, 23, 0.06);
+  transition: border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
 }
 
 .project-card::before {
@@ -310,6 +379,12 @@ a {
   opacity: 1;
 }
 
+.project-card:hover {
+  border-color: rgba(17, 138, 178, 0.45);
+  box-shadow: 0 22px 54px rgba(18, 20, 23, 0.12), 0 0 0 1px rgba(215, 184, 75, 0.22);
+  transform: translateY(-4px);
+}
+
 .project-card > * {
   position: relative;
   z-index: 1;
@@ -319,8 +394,14 @@ a {
   transform: translateY(18px);
 }
 
+.project-card:nth-child(2):hover {
+  transform: translateY(12px);
+}
+
 .project-card:nth-child(3) {
-  background: #f4f6f0;
+  background:
+    linear-gradient(135deg, rgba(244, 246, 240, 0.96), rgba(255, 255, 255, 0.8)),
+    #f4f6f0;
 }
 
 .project-topline {

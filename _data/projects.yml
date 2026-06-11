@@ -1,0 +1,20 @@
+- title: "AI RAG Interview"
+  type: "AI Knowledge App"
+  description: "An experimental knowledge app exploring retrieval, structured answers, and interview workflows."
+  stack: ["RAG", "LLM", "Knowledge Base"]
+  href: ""
+  status: "本地开发中"
+
+- title: "Atom Video Project"
+  type: "Creative Tool"
+  description: "A local prototype for video creation workflows, asset processing, and interactive production tools."
+  stack: ["Video", "Automation", "Frontend"]
+  href: ""
+  status: "本地开发中"
+
+- title: "OpenClaw"
+  type: "Engineering Lab"
+  description: "A local engineering experiment focused on reusable tools, system design, and product iteration."
+  stack: ["Tooling", "System Design", "UX"]
+  href: ""
+  status: "本地开发中"

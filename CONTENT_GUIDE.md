@@ -1,35 +1,35 @@
-# Content Editing Guide
+# 内容编辑指南
 
-## Edit Project Cards
+## 编辑项目卡片
 
-Project cards are stored in `_data/projects.yml`.
+项目卡片存放在 `_data/projects.yml`。
 
-- Keep `href` empty while a project is still local.
-- Fill `href` only after the project is deployed.
-- Keep `status` as `本地开发中` until the public link is ready.
-- `stack` controls the small technology tags.
+- 项目还在本地开发时，保持 `href` 为空。
+- 项目部署完成后，再填写 `href`。
+- 公开链接准备好之前，`status` 保持为 `本地开发中`。
+- `stack` 控制项目卡片底部的技术标签。
 
-## Write Blog Posts
+## 写博客文章
 
-Create posts in `_posts` with this filename format:
+在 `_posts` 目录中新建文章，文件名格式如下：
 
 ```text
 YYYY-MM-DD-title.md
 ```
 
-Use this front matter:
+文章开头使用下面的 front matter：
 
 ```yaml
 ---
 layout: post
-title: "Post title"
-subtitle: "Short summary"
+title: "文章标题"
+subtitle: "简短摘要"
 date: 2026-06-11
-author: "Project Lab"
+author: "项目实验室"
 header-img: "img/home-bg-geek.jpg"
 tags:
-  - Notes
+  - 笔记
 ---
 ```
 
-After committing changes, GitHub Pages rebuilds and publishes the site automatically.
+提交修改后，GitHub Pages 会自动重新构建并发布站点。

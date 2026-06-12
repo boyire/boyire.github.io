@@ -1,6 +1,6 @@
 ---
 layout: default
-description: "Projects, notes and experiments."
+description: "项目、笔记与实验。"
 ---
 
 <main class="portfolio-home">
@@ -13,11 +13,11 @@ description: "Projects, notes and experiments."
             <h1 id="hero-title">{{ site.title }}</h1>
             <p class="hero-line">{{ site.tagline }}</p>
             <p class="hero-summary">
-                A focused index for local prototypes, engineering notes, interaction experiments, and future public demos.
+                这里用于集中展示本地原型、工程笔记、交互实验，以及未来会公开上线的项目。
             </p>
             <div class="hero-actions">
-                <a class="action-primary" href="#projects">View Projects</a>
-                <a class="action-secondary" href="#writing">Read Notes</a>
+                <a class="action-primary" href="#projects">查看项目</a>
+                <a class="action-secondary" href="#writing">阅读笔记</a>
             </div>
         </div>
         <div class="hero-hud" aria-hidden="true">
@@ -28,16 +28,16 @@ description: "Projects, notes and experiments."
         </div>
         <div class="hero-signal" aria-label="Site highlights">
             <div>
-                <span>Focus</span>
-                <strong>AI / Frontend / Tools</strong>
+                <span>方向</span>
+                <strong>AI / 前端 / 工具</strong>
             </div>
             <div>
-                <span>Build Mode</span>
-                <strong>Prototype to Product</strong>
+                <span>构建方式</span>
+                <strong>从原型到产品</strong>
             </div>
             <div>
-                <span>Base</span>
-                <strong>Local First</strong>
+                <span>当前状态</span>
+                <strong>本地优先</strong>
             </div>
         </div>
     </section>
@@ -45,12 +45,12 @@ description: "Projects, notes and experiments."
     <section class="section-band intro-band" aria-labelledby="intro-title">
         <div class="section-shell intro-grid">
             <div>
-                <p class="section-kicker">CURRENT DIRECTION</p>
-                <h2 id="intro-title">A lab-style homepage for prototypes before they become public products.</h2>
+                <p class="section-kicker">当前方向</p>
+                <h2 id="intro-title">一个用于沉淀原型、项目和工程思考的实验型主页。</h2>
             </div>
             <div class="intro-copy">
-                <p>The homepage keeps projects first, notes second, and public links disabled until each project is ready for deployment.</p>
-                <p>The visual system stays restrained and technical, using local assets and lightweight motion instead of third-party animation services.</p>
+                <p>首页优先展示项目，其次展示笔记；项目在正式部署前不会挂远程链接，统一保持“本地开发中”。</p>
+                <p>视觉系统保持技术感和动态感，使用本地资源与轻量原生动效，不依赖危险外部服务。</p>
             </div>
         </div>
     </section>
@@ -58,8 +58,8 @@ description: "Projects, notes and experiments."
     <section class="section-band projects-band" id="projects" aria-labelledby="projects-title">
         <div class="section-shell">
             <div class="section-heading">
-                <p class="section-kicker">FEATURED PROJECTS</p>
-                <h2 id="projects-title">Project Index</h2>
+                <p class="section-kicker">项目展示</p>
+                <h2 id="projects-title">项目索引</h2>
             </div>
             <div class="project-grid">
                 {% assign homepage_projects = site.data.projects | default: site.projects %}
@@ -77,7 +77,7 @@ description: "Projects, notes and experiments."
                         {% endfor %}
                     </div>
                     {% if project.href and project.href != "" %}
-                    <a href="{{ project.href }}" target="_blank" rel="noopener noreferrer">Open Project</a>
+                    <a href="{{ project.href }}" target="_blank" rel="noopener noreferrer">打开项目</a>
                     {% else %}
                     <span class="project-pending">本地开发中</span>
                     {% endif %}
@@ -90,24 +90,24 @@ description: "Projects, notes and experiments."
     <section class="section-band process-band" aria-labelledby="process-title">
         <div class="section-shell process-grid">
             <div>
-                <p class="section-kicker">WORKFLOW</p>
-                <h2 id="process-title">Project Notes Flow</h2>
+                <p class="section-kicker">工作流</p>
+                <h2 id="process-title">项目记录流程</h2>
             </div>
             <ol class="process-list">
                 <li>
                     <span>01</span>
-                    <strong>Idea</strong>
-                    <p>Capture the problem, use case, and hypothesis.</p>
+                    <strong>想法</strong>
+                    <p>记录问题、使用场景和初始假设。</p>
                 </li>
                 <li>
                     <span>02</span>
-                    <strong>Build</strong>
-                    <p>Build a working version and preserve key implementation notes.</p>
+                    <strong>构建</strong>
+                    <p>做出可运行版本，并保留关键实现记录。</p>
                 </li>
                 <li>
                     <span>03</span>
-                    <strong>Reflect</strong>
-                    <p>Review tradeoffs, defects, and next iteration paths.</p>
+                    <strong>复盘</strong>
+                    <p>整理取舍、缺陷和下一轮迭代方向。</p>
                 </li>
             </ol>
         </div>
@@ -116,14 +116,14 @@ description: "Projects, notes and experiments."
     <section class="section-band writing-band" id="writing" aria-labelledby="writing-title">
         <div class="section-shell">
             <div class="section-heading">
-                <p class="section-kicker">LATEST NOTES</p>
-                <h2 id="writing-title">Latest Notes</h2>
+                <p class="section-kicker">最新笔记</p>
+                <h2 id="writing-title">近期记录</h2>
             </div>
             <div class="note-list">
                 {% if site.posts.size == 0 %}
                 <article class="note-empty">
-                    <span>Notes are being prepared.</span>
-                    <p>Future updates will include project retrospectives, implementation logs, and design notes.</p>
+                    <span>笔记正在整理中。</span>
+                    <p>后续会补充项目复盘、实现日志、设计记录和上线过程。</p>
                 </article>
                 {% endif %}
                 {% for post in site.posts limit:6 %}

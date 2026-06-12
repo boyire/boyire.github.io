@@ -3,22 +3,22 @@
     <div class="container">
         <div class="footer-grid">
             <div>
-                <p class="footer-kicker">PROJECT LAB</p>
+                <p class="footer-kicker">项目实验室</p>
                 <p class="footer-title">{{ site.title }}</p>
                 <p class="footer-copy">{{ site.description }}</p>
             </div>
-            <div class="footer-links" aria-label="Footer links">
-                <a href="{{ site.baseurl }}/#projects">Projects</a>
-                <a href="{{ site.baseurl }}/#writing">Notes</a>
-                <a href="{{ site.baseurl }}/about/">About</a>
-                <a href="{{ site.baseurl }}/manage/">Manage</a>
+            <div class="footer-links" aria-label="页脚链接">
+                <a href="{{ site.baseurl }}/#projects">项目</a>
+                <a href="{{ site.baseurl }}/#writing">笔记</a>
+                <a href="{{ site.baseurl }}/about/">关于</a>
+                <a href="{{ site.baseurl }}/manage/">管理</a>
                 {% if site.github_repo and site.github_repo != "" %}
-                <a href="{{ site.github_repo }}" target="_blank" rel="noopener noreferrer">Source</a>
+                <a href="{{ site.github_repo }}" target="_blank" rel="noopener noreferrer">源码</a>
                 {% endif %}
             </div>
         </div>
         <p class="copyright text-muted">
-            Copyright &copy; {{ site.title }} {{ site.time | date: '%Y' }}
+            版权所有 &copy; {{ site.title }} {{ site.time | date: '%Y' }}
         </p>
     </div>
 </footer>

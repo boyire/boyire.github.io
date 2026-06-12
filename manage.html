@@ -1,44 +1,44 @@
 ---
 layout: page
-title: "Manage"
-description: "Edit profile and writing content from GitHub."
+title: "内容管理"
+description: "从 GitHub 编辑个人信息、项目展示和博客文章。"
 header-img: "img/home-bg-geek.jpg"
 ---
 
 <div class="manage-panel">
     <p class="manage-lead">
-        This site is a static GitHub Pages blog. Editing happens through the repository, and publishing is completed by GitHub Pages after each commit.
+        这是一个基于 GitHub Pages 的静态博客。内容编辑通过仓库完成，提交后由 GitHub Pages 自动构建并发布。
     </p>
 
     <div class="manage-grid">
         <section class="manage-card">
-            <span>Profile</span>
+            <span>个人资料</span>
             <h2>个人信息编辑</h2>
-            <p>Update the site title, tagline, project status, About page text, and other public profile fields.</p>
+            <p>编辑站点标题、标语、项目状态、关于页面，以及公开展示的个人资料字段。</p>
             <div class="manage-actions">
-                <a href="{{ site.profile_edit_url }}" target="_blank" rel="noopener noreferrer">Edit Config</a>
-                <a href="{{ site.about_edit_url }}" target="_blank" rel="noopener noreferrer">Edit About</a>
-                <a href="{{ site.projects_edit_url }}" target="_blank" rel="noopener noreferrer">Edit Projects</a>
+                <a href="{{ site.profile_edit_url }}" target="_blank" rel="noopener noreferrer">编辑配置</a>
+                <a href="{{ site.about_edit_url }}" target="_blank" rel="noopener noreferrer">编辑关于</a>
+                <a href="{{ site.projects_edit_url }}" target="_blank" rel="noopener noreferrer">编辑项目</a>
             </div>
         </section>
 
         <section class="manage-card">
-            <span>Writing</span>
+            <span>写作</span>
             <h2>博客文章编辑</h2>
-            <p>Create a new Markdown note or open the posts folder to revise existing drafts and published articles.</p>
+            <p>新建 Markdown 笔记，或打开文章目录修改草稿和已发布文章。</p>
             <div class="manage-actions">
-                <a href="{{ site.new_post_url }}" target="_blank" rel="noopener noreferrer">New Post</a>
-                <a href="{{ site.posts_edit_url }}" target="_blank" rel="noopener noreferrer">Open Posts</a>
-                <a href="{{ site.content_guide_url }}" target="_blank" rel="noopener noreferrer">Writing Guide</a>
+                <a href="{{ site.new_post_url }}" target="_blank" rel="noopener noreferrer">新建文章</a>
+                <a href="{{ site.posts_edit_url }}" target="_blank" rel="noopener noreferrer">打开文章目录</a>
+                <a href="{{ site.content_guide_url }}" target="_blank" rel="noopener noreferrer">写作指南</a>
             </div>
         </section>
 
         <section class="manage-card manage-card-muted">
-            <span>Deploy</span>
+            <span>发布</span>
             <h2>发布说明</h2>
-            <p>GitHub Pages rebuilds the site after changes are committed to the repository. No separate backend login is required for the current site.</p>
+            <p>内容提交到仓库后，GitHub Pages 会自动重新构建站点。当前站点不需要独立后端登录。</p>
             <div class="manage-actions">
-                <a href="{{ site.repository_url }}" target="_blank" rel="noopener noreferrer">Repository</a>
+                <a href="{{ site.repository_url }}" target="_blank" rel="noopener noreferrer">打开仓库</a>
             </div>
         </section>
     </div>

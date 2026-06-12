@@ -1,10 +1,10 @@
 # Site settings
-title: "Project Lab"
-SEOTitle: "Project Lab | Projects & Notes"
+title: "项目实验室"
+SEOTitle: "项目实验室 | 项目与笔记"
 header-img: img/home-bg.jpg
 email: ""
-description: "A quiet space for projects, notes, experiments, and build logs."
-keyword: "projects, notes, experiments, frontend, AI, GitHub Pages"
+description: "用于整理项目、笔记、实验与构建记录的个人空间。"
+keyword: "项目, 笔记, 实验, 前端, AI, GitHub Pages"
 url: ""
 baseurl: ""
 github_repo: ""
@@ -17,12 +17,12 @@ new_post_url: "https://github.com/boyire/boyire.github.io/new/master/_posts?file
 content_guide_url: "https://github.com/boyire/boyire.github.io/blob/master/CONTENT_GUIDE.md"
 
 # Profile
-tagline: "Turning ideas into working prototypes."
-hero_role: "Projects / Notes / Experiments"
+tagline: "把想法做成可以运行的原型。"
+hero_role: "项目 / 笔记 / 实验"
 location: ""
 github_username: ""
 sidebar: true
-sidebar-about-description: "Projects, notes, experiments, and retrospectives."
+sidebar-about-description: "项目、笔记、实验与复盘。"
 sidebar-avatar: ""
 
 # SNS settings
@@ -50,7 +50,7 @@ featured-condition-size: 1
 # Progressive Web Apps
 chrome-tab-theme-color: "#111827"
 service-worker: true
-service_worker_version: "20260611-1"
-asset_version: "20260611-1"
+service_worker_version: "20260612-1"
+asset_version: "20260612-1"
 
 friends: []

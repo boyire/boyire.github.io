@@ -55,6 +55,31 @@ description: "项目、笔记与实验。"
         </div>
     </section>
 
+    <section class="section-band skill-band" aria-labelledby="skills-title">
+        <div class="section-shell">
+            <div class="section-heading">
+                <p class="section-kicker">能力矩阵</p>
+                <h2 id="skills-title">当前正在强化的技术方向</h2>
+            </div>
+            <div class="skill-grid">
+                {% for skill in site.data.skills %}
+                <article class="skill-card">
+                    <div class="skill-card-head">
+                        <span>{{ skill.level }}</span>
+                        <strong>{{ skill.name }}</strong>
+                    </div>
+                    <p>{{ skill.description }}</p>
+                    <div class="stack-row">
+                        {% for tool in skill.tools %}
+                        <span>{{ tool }}</span>
+                        {% endfor %}
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
     <section class="section-band projects-band" id="projects" aria-labelledby="projects-title">
         <div class="section-shell">
             <div class="section-heading">
@@ -71,16 +96,44 @@ description: "项目、笔记与实验。"
                     </div>
                     <h3>{{ project.title }}</h3>
                     <p>{{ project.description }}</p>
+                    {% if project.summary %}
+                    <p class="project-summary">{{ project.summary }}</p>
+                    {% endif %}
                     <div class="stack-row">
                         {% for tech in project.stack %}
                         <span>{{ tech }}</span>
                         {% endfor %}
+                    </div>
+                    <div class="project-meta">
+                        <span>{{ project.phase }}</span>
+                        <span>{{ project.signal }}</span>
                     </div>
                     {% if project.href and project.href != "" %}
                     <a href="{{ project.href }}" target="_blank" rel="noopener noreferrer">打开项目</a>
                     {% else %}
                     <span class="project-pending">本地开发中</span>
                     {% endif %}
+                </article>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <section class="section-band timeline-band" aria-labelledby="timeline-title">
+        <div class="section-shell timeline-shell">
+            <div>
+                <p class="section-kicker">构建时间线</p>
+                <h2 id="timeline-title">从清理旧站到可维护内容系统</h2>
+            </div>
+            <div class="timeline-list">
+                {% for item in site.data.timeline %}
+                <article class="timeline-item">
+                    <time>{{ item.date }}</time>
+                    <div>
+                        <span>{{ item.status }}</span>
+                        <h3>{{ item.title }}</h3>
+                        <p>{{ item.description }}</p>
+                    </div>
                 </article>
                 {% endfor %}
             </div>
@@ -118,6 +171,15 @@ description: "项目、笔记与实验。"
             <div class="section-heading">
                 <p class="section-kicker">最新笔记</p>
                 <h2 id="writing-title">近期记录</h2>
+            </div>
+            <div class="writing-category-grid">
+                {% for category in site.data.writing_categories %}
+                <article class="writing-category">
+                    <span>{{ category.tag }}</span>
+                    <h3>{{ category.name }}</h3>
+                    <p>{{ category.description }}</p>
+                </article>
+                {% endfor %}
             </div>
             <div class="note-list">
                 {% if site.posts.size == 0 %}

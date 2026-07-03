@@ -1,0 +1,14 @@
+- name: "AI 应用"
+  level: "探索中"
+  description: "围绕 RAG、结构化输出、知识库和自动化流程做小型可运行实验。"
+  tools: ["RAG", "LLM", "Prompt", "知识库"]
+
+- name: "前端交互"
+  level: "持续强化"
+  description: "关注页面动效、可视化表达、响应式布局和原生 Web 体验。"
+  tools: ["Jekyll", "JavaScript", "Canvas", "CSS"]
+
+- name: "工程工具"
+  level: "本地优先"
+  description: "把重复工作整理成脚本、模板和可维护的数据结构。"
+  tools: ["GitHub Pages", "YAML", "Markdown", "脚本"]

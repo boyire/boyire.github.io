@@ -1,12 +1,14 @@
 (function () {
   var prefersReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var isCoarsePointer = window.matchMedia && window.matchMedia("(pointer: coarse)").matches;
   var hero = document.querySelector(".portfolio-hero");
   var canvas = document.querySelector("[data-portfolio-canvas]");
+  var ticking = false;
 
   document.documentElement.classList.add("effects-ready");
 
   if (!prefersReduced && "IntersectionObserver" in window) {
-    var revealItems = document.querySelectorAll(".section-band, .project-card, .note-item, .about-grid section");
+    var revealItems = document.querySelectorAll(".section-band, .project-card, .skill-card, .timeline-item, .writing-category, .note-item, .about-grid section");
     revealItems.forEach(function (item) {
       item.classList.add("reveal-item");
     });
@@ -27,8 +29,15 @@
 
   if (!prefersReduced && hero) {
     window.addEventListener("scroll", function () {
-      var offset = Math.min(window.scrollY * 0.16, 90);
-      hero.style.setProperty("--hero-shift", offset + "px");
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () {
+        var offset = Math.min(window.scrollY * 0.16, 90);
+        var scan = Math.min(window.scrollY * 0.08 - 45, 115);
+        hero.style.setProperty("--hero-shift", offset + "px");
+        hero.style.setProperty("--scan-x", scan + "%");
+        ticking = false;
+      });
     }, { passive: true });
 
     hero.addEventListener("pointermove", function (event) {
@@ -38,17 +47,24 @@
     });
   }
 
-  if (!prefersReduced) {
+  if (!prefersReduced && !isCoarsePointer) {
     document.querySelectorAll(".project-card").forEach(function (card) {
+      var cardTicking = false;
+
       card.addEventListener("pointermove", function (event) {
-        var rect = card.getBoundingClientRect();
-        var x = ((event.clientX - rect.left) / rect.width) * 100;
-        var y = ((event.clientY - rect.top) / rect.height) * 100;
-        card.style.setProperty("--mx", x + "%");
-        card.style.setProperty("--my", y + "%");
-        var rotateX = (50 - y) * 0.035;
-        var rotateY = (x - 50) * 0.035;
-        card.style.transform = "translateY(" + (card.matches(":nth-child(2)") ? "12px" : "-4px") + ") rotateX(" + rotateX + "deg) rotateY(" + rotateY + "deg)";
+        if (cardTicking) return;
+        cardTicking = true;
+        requestAnimationFrame(function () {
+          var rect = card.getBoundingClientRect();
+          var x = ((event.clientX - rect.left) / rect.width) * 100;
+          var y = ((event.clientY - rect.top) / rect.height) * 100;
+          card.style.setProperty("--mx", x + "%");
+          card.style.setProperty("--my", y + "%");
+          var rotateX = (50 - y) * 0.035;
+          var rotateY = (x - 50) * 0.035;
+          card.style.transform = "translateY(" + (card.matches(":nth-child(2)") ? "12px" : "-4px") + ") rotateX(" + rotateX + "deg) rotateY(" + rotateY + "deg)";
+          cardTicking = false;
+        });
       });
 
       card.addEventListener("pointerleave", function () {
@@ -65,6 +81,8 @@
     var height = 0;
     var pointer = { x: -9999, y: -9999 };
     var frame = 0;
+    var rafId = 0;
+    var hidden = false;
 
     function resize() {
       var ratio = Math.min(window.devicePixelRatio || 1, 2);
@@ -75,17 +93,18 @@
       canvas.style.width = width + "px";
       canvas.style.height = height + "px";
       ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
-      points = Array.from({ length: Math.min(118, Math.floor(width / 12)) }, function (_, index) {
+      var pointCount = isCoarsePointer ? Math.min(54, Math.floor(width / 18)) : Math.min(118, Math.floor(width / 12));
+      points = Array.from({ length: pointCount }, function (_, index) {
         return {
           x: (index * 149) % width,
           y: (index * 83) % height,
-          vx: ((index % 7) - 3) * 0.1,
-          vy: (((index + 2) % 7) - 3) * 0.1,
+          vx: ((index % 7) - 3) * (isCoarsePointer ? 0.06 : 0.1),
+          vy: (((index + 2) % 7) - 3) * (isCoarsePointer ? 0.06 : 0.1),
           r: 0.8 + (index % 4) * 0.32,
           hue: index % 3
         };
       });
-      meteors = Array.from({ length: 5 }, function (_, index) {
+      meteors = Array.from({ length: isCoarsePointer ? 2 : 5 }, function (_, index) {
         return {
           x: (index * 313) % width,
           y: -80 - index * 110,
@@ -97,6 +116,7 @@
     }
 
     function draw() {
+      if (hidden) return;
       frame += 1;
       ctx.clearRect(0, 0, width, height);
       ctx.lineWidth = 1;
@@ -166,7 +186,7 @@
         ctx.arc(point.x, point.y, point.r + pulse * 0.28, 0, Math.PI * 2);
         ctx.fill();
       });
-      requestAnimationFrame(draw);
+      rafId = requestAnimationFrame(draw);
     }
 
     hero.addEventListener("pointermove", function (event) {
@@ -180,7 +200,21 @@
       pointer.y = -9999;
     });
 
-    window.addEventListener("resize", resize);
+    var resizeTimer = 0;
+    window.addEventListener("resize", function () {
+      window.clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(resize, 120);
+    });
+
+    document.addEventListener("visibilitychange", function () {
+      hidden = document.hidden;
+      if (hidden && rafId) {
+        cancelAnimationFrame(rafId);
+      } else {
+        draw();
+      }
+    });
+
     resize();
     draw();
   }

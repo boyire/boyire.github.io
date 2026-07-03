@@ -1,0 +1,19 @@
+- title: "站点清理"
+  date: "2026-06"
+  status: "已完成"
+  description: "删除旧文章和个人隐私信息，保留 Jekyll + GitHub Pages 架构。"
+
+- title: "视觉重构"
+  date: "2026-06"
+  status: "已上线"
+  description: "新增项目实验室首页、动态粒子、HUD 视觉和中文化内容。"
+
+- title: "内容数据化"
+  date: "进行中"
+  status: "当前阶段"
+  description: "项目、技能、时间线和写作分类逐步改为 YAML 驱动。"
+
+- title: "项目公开"
+  date: "后续"
+  status: "待部署"
+  description: "项目完成部署后再补充公开链接，首页自动从本地开发状态切换。"

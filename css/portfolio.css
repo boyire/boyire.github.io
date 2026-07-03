@@ -1,16 +1,17 @@
 :root {
-  --ink: #121417;
-  --ink-soft: #2f343a;
-  --paper: #f7f5ef;
-  --paper-deep: #ebe6dc;
+  --ink: #101316;
+  --ink-soft: #333942;
+  --paper: #f5f2ea;
+  --paper-deep: #e9e1d3;
   --line: rgba(18, 20, 23, 0.14);
-  --teal: #0f766e;
-  --cyan: #118ab2;
-  --violet: #7c5cff;
-  --coral: #e85d4f;
-  --signal: #d7b84b;
+  --teal: #0d756a;
+  --cyan: #0f7ea2;
+  --violet: #6557d2;
+  --coral: #ce4c45;
+  --signal: #d6b13c;
   --green: #5c8a52;
   --white: #ffffff;
+  --terminal: #101316;
 }
 
 html {
@@ -69,7 +70,7 @@ a {
 
 .portfolio-hero {
   position: relative;
-  min-height: 88vh;
+  min-height: 88dvh;
   overflow: hidden;
   display: grid;
   align-items: center;
@@ -101,6 +102,21 @@ a {
   pointer-events: none;
 }
 
+.portfolio-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  background:
+    linear-gradient(90deg, transparent, rgba(215, 177, 60, 0.14), transparent),
+    repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.055) 0 1px, transparent 1px 7px);
+  background-size: 42% 100%, 100% 8px;
+  background-position: var(--scan-x, -45%) 0, 0 0;
+  mix-blend-mode: screen;
+  opacity: 0.42;
+  pointer-events: none;
+}
+
 .hero-vignette {
   position: absolute;
   inset: 0;
@@ -126,6 +142,17 @@ a {
   pointer-events: none;
 }
 
+.hero-inner::before {
+  content: "";
+  position: absolute;
+  left: -22px;
+  top: -28px;
+  width: 4px;
+  height: 112px;
+  background: linear-gradient(var(--signal), transparent);
+  box-shadow: 0 0 28px rgba(215, 177, 60, 0.44);
+}
+
 .hero-inner {
   position: relative;
   z-index: 5;
@@ -148,6 +175,33 @@ a {
   height: 82px;
   border-color: rgba(215, 184, 75, 0.72);
   filter: drop-shadow(0 0 12px rgba(215, 184, 75, 0.32));
+}
+
+.hero-hud::before,
+.hero-hud::after {
+  content: "";
+  position: absolute;
+  border: 1px solid rgba(215, 177, 60, 0.34);
+  pointer-events: none;
+}
+
+.hero-hud::before {
+  left: 13%;
+  top: 17%;
+  width: 170px;
+  height: 42px;
+  border-right: 0;
+  opacity: 0.72;
+}
+
+.hero-hud::after {
+  right: 12%;
+  bottom: 22%;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  opacity: 0.42;
+  box-shadow: inset 0 0 0 22px rgba(215, 177, 60, 0.04);
 }
 
 .hero-hud span:nth-child(1) {
@@ -262,6 +316,7 @@ a {
   width: min(1040px, calc(100% - 48px));
   margin: 0 auto;
   border-top: 1px solid rgba(255, 255, 255, 0.22);
+  background: linear-gradient(90deg, rgba(16, 19, 22, 0.1), rgba(16, 19, 22, 0.42));
 }
 
 .hero-signal div {
@@ -321,6 +376,79 @@ a {
   letter-spacing: 0;
 }
 
+.skill-band {
+  background:
+    linear-gradient(180deg, rgba(16, 19, 22, 0.04), transparent 26%),
+    var(--paper-deep);
+  border-top: 1px solid var(--line);
+}
+
+.skill-grid,
+.writing-category-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.skill-card,
+.writing-category {
+  position: relative;
+  overflow: hidden;
+  min-height: 220px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.86), rgba(245, 242, 234, 0.7)),
+    var(--white);
+}
+
+.skill-card::before,
+.writing-category::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(13, 117, 106, 0.12) 1px, transparent 1px),
+    linear-gradient(rgba(13, 117, 106, 0.1) 1px, transparent 1px);
+  background-size: 26px 26px;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.55), transparent 76%);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.skill-card > *,
+.writing-category > * {
+  position: relative;
+  z-index: 1;
+}
+
+.skill-card-head {
+  display: grid;
+  gap: 12px;
+}
+
+.skill-card-head span,
+.writing-category span {
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.skill-card-head strong,
+.writing-category h3 {
+  color: var(--ink);
+  font-size: 23px;
+  line-height: 1.2;
+}
+
+.skill-card p,
+.writing-category p {
+  margin: 18px 0;
+  color: var(--ink-soft);
+  line-height: 1.75;
+}
+
 .intro-copy p,
 .project-card p,
 .process-list p,
@@ -336,11 +464,17 @@ a {
 
 .projects-band {
   background:
-    radial-gradient(circle at 18% 18%, rgba(17, 138, 178, 0.12), transparent 28%),
-    radial-gradient(circle at 82% 20%, rgba(232, 93, 79, 0.1), transparent 26%),
-    #fdfbf5;
+    linear-gradient(90deg, rgba(16, 19, 22, 0.9), rgba(16, 19, 22, 0.72)),
+    radial-gradient(circle at 18% 18%, rgba(15, 126, 162, 0.18), transparent 28%),
+    radial-gradient(circle at 82% 20%, rgba(215, 177, 60, 0.16), transparent 26%),
+    var(--terminal);
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
+}
+
+.projects-band .section-kicker,
+.projects-band h2 {
+  color: var(--white);
 }
 
 .project-grid {
@@ -359,19 +493,32 @@ a {
   border: 1px solid var(--line);
   border-radius: 8px;
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(253, 251, 245, 0.9)),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(235, 238, 229, 0.86)),
     var(--white);
-  box-shadow: 0 14px 36px rgba(18, 20, 23, 0.06);
+  box-shadow: 0 24px 58px rgba(0, 0, 0, 0.24);
   transition: border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
+  transform-style: preserve-3d;
+  will-change: transform;
 }
 
 .project-card::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at var(--mx, 50%) var(--my, 40%), rgba(17, 138, 178, 0.18), transparent 34%);
+  background:
+    radial-gradient(circle at var(--mx, 50%) var(--my, 40%), rgba(15, 126, 162, 0.22), transparent 34%),
+    linear-gradient(135deg, rgba(215, 177, 60, 0.18), transparent 36%);
   opacity: 0;
   transition: opacity 220ms ease;
+  pointer-events: none;
+}
+
+.project-card::after {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 1px solid rgba(16, 19, 22, 0.08);
+  border-radius: 6px;
   pointer-events: none;
 }
 
@@ -402,6 +549,12 @@ a {
   background:
     linear-gradient(135deg, rgba(244, 246, 240, 0.96), rgba(255, 255, 255, 0.8)),
     #f4f6f0;
+}
+
+.project-summary {
+  padding-left: 12px;
+  border-left: 2px solid rgba(15, 126, 162, 0.38);
+  font-size: 14px;
 }
 
 .project-topline {
@@ -457,6 +610,19 @@ a {
   background: rgba(215, 184, 75, 0.12);
 }
 
+.project-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.project-meta span {
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 900;
+}
+
 .project-card > a,
 .project-pending {
   margin-top: 22px;
@@ -487,6 +653,68 @@ a {
 .process-band {
   background: var(--ink);
   color: var(--white);
+}
+
+.timeline-band {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.5), transparent),
+    var(--paper);
+}
+
+.timeline-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: 52px;
+}
+
+.timeline-list {
+  display: grid;
+  gap: 0;
+  border-left: 1px solid rgba(16, 19, 22, 0.18);
+}
+
+.timeline-item {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  gap: 20px;
+  position: relative;
+  padding: 0 0 28px 26px;
+}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -5px;
+  top: 6px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--signal);
+  box-shadow: 0 0 0 6px rgba(215, 177, 60, 0.16);
+}
+
+.timeline-item time {
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.timeline-item span {
+  color: var(--coral);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.timeline-item h3 {
+  margin: 8px 0 8px;
+  color: var(--ink);
+  font-size: 22px;
+}
+
+.timeline-item p {
+  margin: 0;
+  color: var(--ink-soft);
+  line-height: 1.75;
 }
 
 .process-band h2 {
@@ -528,6 +756,10 @@ a {
 
 .writing-band {
   background: var(--paper-deep);
+}
+
+.writing-category-grid {
+  margin-bottom: 34px;
 }
 
 .note-list {
@@ -587,6 +819,16 @@ a {
   opacity: 0;
   transform: translateY(22px);
   transition: opacity 520ms ease, transform 520ms ease;
+}
+
+.effects-ready .skill-card.reveal-item:nth-child(2),
+.effects-ready .writing-category.reveal-item:nth-child(2) {
+  transition-delay: 80ms;
+}
+
+.effects-ready .skill-card.reveal-item:nth-child(3),
+.effects-ready .writing-category.reveal-item:nth-child(3) {
+  transition-delay: 160ms;
 }
 
 .effects-ready .reveal-item.is-visible {
@@ -796,18 +1038,26 @@ a {
 @media (max-width: 991px) {
   .intro-grid,
   .process-grid,
+  .timeline-shell,
   .footer-grid,
   .about-grid,
   .manage-grid {
     grid-template-columns: 1fr;
   }
 
-  .project-grid {
+  .project-grid,
+  .skill-grid,
+  .writing-category-grid {
     grid-template-columns: 1fr;
   }
 
   .project-card:nth-child(2) {
     transform: none;
+  }
+
+  .hero-hud::before,
+  .hero-hud::after {
+    display: none;
   }
 
   .hero-signal {
@@ -858,9 +1108,22 @@ a {
   }
 
   .process-list li,
-  .note-item a {
+  .note-item a,
+  .timeline-item {
     grid-template-columns: 1fr;
     gap: 8px;
+  }
+
+  .timeline-list {
+    border-left: 0;
+  }
+
+  .timeline-item {
+    padding-left: 0;
+  }
+
+  .timeline-item::before {
+    display: none;
   }
 
   .process-list li {

@@ -1,20 +1,29 @@
 - title: "AI RAG Interview"
   type: "AI 知识应用"
   description: "一个探索检索增强、结构化回答和面试流程的本地知识应用实验。"
+  summary: "把零散资料变成可检索、可追问、可复盘的知识面试工具。"
   stack: ["RAG", "大模型", "知识库"]
+  phase: "原型验证"
+  signal: "知识检索"
   href: ""
   status: "本地开发中"
 
 - title: "Atom Video Project"
   type: "创作工具"
   description: "围绕视频创作流程、素材处理和交互式生产工具搭建的本地原型。"
+  summary: "梳理视频生产链路，从素材处理到交互式生成工具。"
   stack: ["视频", "自动化", "前端"]
+  phase: "流程设计"
+  signal: "创作效率"
   href: ""
   status: "本地开发中"
 
 - title: "OpenClaw"
   type: "工程实验"
   description: "聚焦可复用工具、系统设计和产品迭代的本地工程实验。"
+  summary: "沉淀能复用的开发工具、系统组件和产品化方法。"
   stack: ["工具链", "系统设计", "体验"]
+  phase: "持续迭代"
+  signal: "工程复用"
   href: ""
   status: "本地开发中"

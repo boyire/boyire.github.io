@@ -1,4 +1,4 @@
-:root {
+﻿:root {
   --ink: #101316;
   --ink-soft: #333942;
   --paper: #f5f2ea;
@@ -758,6 +758,59 @@ a {
   background: var(--paper-deep);
 }
 
+
+.friends-band {
+  background: #fdfbf5;
+  border-top: 1px solid var(--line);
+}
+
+.friends-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.friend-card,
+.friend-empty {
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--white);
+  box-shadow: 0 14px 36px rgba(18, 20, 23, 0.06);
+}
+
+.friend-card span,
+.friend-empty span {
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.friend-card h3 {
+  margin: 16px 0 0;
+  color: var(--ink);
+  font-size: 23px;
+}
+
+.friend-card p,
+.friend-empty p {
+  margin: 14px 0 0;
+  color: var(--ink-soft);
+  line-height: 1.75;
+}
+
+.friend-card a {
+  display: inline-flex;
+  margin-top: 18px;
+  color: var(--teal);
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.friend-card a:hover {
+  color: var(--coral);
+}
 .writing-category-grid {
   margin-bottom: 34px;
 }
@@ -1044,10 +1097,10 @@ a {
   .manage-grid {
     grid-template-columns: 1fr;
   }
-
   .project-grid,
   .skill-grid,
-  .writing-category-grid {
+  .writing-category-grid,
+  .friends-grid {
     grid-template-columns: 1fr;
   }
 
@@ -1150,3 +1203,7 @@ a {
     font-size: 20px;
   }
 }
+
+
+
+

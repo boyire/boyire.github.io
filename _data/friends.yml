@@ -1,0 +1,6 @@
+﻿# Friend links stay empty until each link is confirmed public.
+# Add items with this shape:
+# - name: "Example Site"
+#   description: "Short description for the friend link."
+#   url: "https://example.com"
+#   tag: "Blog"

@@ -1,4 +1,4 @@
----
+﻿---
 layout: default
 description: "项目、笔记与实验。"
 ---
@@ -199,4 +199,30 @@ description: "项目、笔记与实验。"
             </div>
         </div>
     </section>
-</main>
+
+    <section class="section-band friends-band" id="friends" aria-labelledby="friends-title">
+        <div class="section-shell">
+            <div class="section-heading">
+                <p class="section-kicker">友链</p>
+                <h2 id="friends-title">友情链接</h2>
+            </div>
+            {% if site.data.friends and site.data.friends.size > 0 %}
+            <div class="friends-grid">
+                {% for friend in site.data.friends %}
+                <article class="friend-card">
+                    <span>{{ friend.tag | default: "Link" }}</span>
+                    <h3>{{ friend.name }}</h3>
+                    <p>{{ friend.description }}</p>
+                    <a href="{{ friend.url }}" target="_blank" rel="noopener noreferrer">访问站点</a>
+                </article>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="friend-empty">
+                <span>友链整理中。</span>
+                <p>后续确认公开链接后，会在这里展示朋友的博客、项目主页或推荐站点。</p>
+            </div>
+            {% endif %}
+        </div>
+    </section></main>
+

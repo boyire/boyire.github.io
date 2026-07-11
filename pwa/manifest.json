@@ -1,7 +1,9 @@
+---
+---
 {
-  "name": "Project Lab | Projects & Notes",
-  "short_name": "Project Lab",
-  "description": "A quiet space for projects, notes, experiments, and build logs.",
+  "name": "项目实验室 | 项目与笔记",
+  "short_name": "项目实验室",
+  "description": "用于整理项目、笔记、实验与构建记录的个人空间。",
   "icons": [{
     "src": "icons/pwa_icon_128.png",
     "sizes": "128x128",
@@ -13,7 +15,7 @@
   }],
   "background_color": "#f7f5ef",
   "theme_color": "#111827",
-  "start_url": "/",
+  "start_url": "{{ site.baseurl }}/",
   "display": "standalone",
   "orientation": "portrait"
 }

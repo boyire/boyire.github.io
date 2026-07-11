@@ -17,12 +17,11 @@
         "grunt-contrib-uglify": "~0.5.1"
     },
     "scripts": {
-        "preview": "cd _site; python -m SimpleHTTPServer 8020",
-        "py3view": "cd _site; python3 -m http.server 8020",
-        "watch"  : "grunt watch & npm run preview & jekyll serve -w",
-        "py3wa"  : "grunt watch & npm run py3view & jekyll serve -w",
-        "boil"   : "git push boilerplate boilerplate:master",
-        "push"   : "git push origin master --tag",
-        "cafe"   : "git co gitcafe-pages; git merge master; git push gitcafe gitcafe-pages:gitcafe-pages --tag; git co master;"
+        "build": "bundle exec jekyll build",
+        "serve": "bundle exec jekyll serve --livereload",
+        "preview": "bundle exec ruby -run -e httpd _site -p 8020",
+        "test": "ruby test/site_quality_test.rb",
+        "check:site": "ruby script/check_site.rb",
+        "styles": "grunt less"
     }
 }

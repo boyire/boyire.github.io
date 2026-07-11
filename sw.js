@@ -1,39 +1,36 @@
-const CACHE_VERSION = 'project-lab-20260610-v2';
+const CACHE_PREFIX = 'project-lab-';
+const CACHE_VERSION = 'project-lab-20260710-v1';
 const PRECACHE = `${CACHE_VERSION}-precache`;
-const HOSTNAME_WHITELIST = [self.location.hostname];
+const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`;
+const PRECACHE_URLS = [
+  '/',
+  '/offline.html',
+  '/css/bootstrap.min.css',
+  '/css/hux-blog.min.css',
+  '/css/portfolio.css',
+  '/css/syntax.css',
+  '/js/jquery.min.js',
+  '/js/bootstrap.min.js',
+  '/js/hux-blog.min.js',
+  '/js/portfolio-effects.js',
+  '/pwa/manifest.json'
+];
 
-const withCacheBust = (request) => {
-  const url = new URL(request.url);
-  url.protocol = self.location.protocol;
-  url.search += `${url.search ? '&' : '?'}cache-bust=${Date.now()}`;
-  return url.href;
-};
+const isNavigationRequest = (request) => request.mode === 'navigate';
+const isCacheable = (response) => response && response.ok && response.type === 'basic';
 
-const isNavigationRequest = (request) => (
-  request.mode === 'navigate' ||
-  (request.method === 'GET' && (request.headers.get('accept') || '').includes('text/html'))
-);
-
-const endsWithExtension = (request) => (
-  Boolean(new URL(request.url).pathname.match(/\.\w+$/))
-);
-
-const shouldRedirect = (request) => (
-  isNavigationRequest(request) &&
-  new URL(request.url).pathname.substr(-1) !== '/' &&
-  !endsWithExtension(request)
-);
-
-const getRedirectUrl = (request) => {
-  const url = new URL(request.url);
-  url.pathname += '/';
-  return url.href;
+const cacheResponse = async (cacheName, request, response) => {
+  if (isCacheable(response)) {
+    const cache = await caches.open(cacheName);
+    await cache.put(request, response.clone());
+  }
+  return response;
 };
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(PRECACHE)
-      .then((cache) => cache.add('/offline.html'))
+      .then((cache) => cache.addAll(PRECACHE_URLS))
       .then(() => self.skipWaiting())
   );
 });
@@ -41,7 +38,11 @@ self.addEventListener('install', (event) => {
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys()
-      .then((keys) => Promise.all(keys.map((key) => caches.delete(key))))
+        .then((keys) => Promise.all(
+          keys
+            .filter((key) => key.startsWith(CACHE_PREFIX) && key !== PRECACHE && key !== RUNTIME_CACHE)
+            .map((key) => caches.delete(key))
+        ))
       .then(() => self.clients.claim())
   );
 });
@@ -49,24 +50,20 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
 
-  const hostname = new URL(event.request.url).hostname;
-  if (!HOSTNAME_WHITELIST.includes(hostname)) return;
-
-  if (shouldRedirect(event.request)) {
-    event.respondWith(Response.redirect(getRedirectUrl(event.request)));
-    return;
-  }
+  if (new URL(event.request.url).origin !== self.location.origin) return;
 
   if (isNavigationRequest(event.request)) {
     event.respondWith(
-      fetch(withCacheBust(event.request), { cache: 'no-store' })
-        .catch(() => caches.match('/offline.html'))
+      fetch(event.request)
+        .then((response) => cacheResponse(RUNTIME_CACHE, event.request, response))
+        .catch(() => caches.match(event.request).then((cached) => cached || caches.match('/offline.html')))
     );
     return;
   }
 
   event.respondWith(
-    fetch(withCacheBust(event.request), { cache: 'no-store' })
-      .catch(() => caches.match(event.request))
+    caches.match(event.request).then((cached) => (
+      cached || fetch(event.request).then((response) => cacheResponse(RUNTIME_CACHE, event.request, response))
+    ))
   );
 });

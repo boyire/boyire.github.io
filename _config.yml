@@ -1,7 +1,8 @@
 # Site settings
 title: "项目实验室"
 SEOTitle: "项目实验室 | 项目与笔记"
-header-img: img/home-bg.jpg
+header-img: img/home-bg.webp
+social_image: img/home-bg.jpg
 email: ""
 description: "用于整理项目、笔记、实验与构建记录的个人空间。"
 keyword: "项目, 笔记, 实验, 前端, AI, GitHub Pages"
@@ -43,7 +44,7 @@ featured-condition-size: 1
 # Progressive Web Apps
 chrome-tab-theme-color: "#111827"
 service-worker: true
-service_worker_version: "20260612-1"
-asset_version: "20260612-1"
+service_worker_version: "20260713-1"
+asset_version: "20260713-1"
 
 friends: []

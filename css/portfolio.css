@@ -55,6 +55,20 @@ a {
   color: var(--signal);
 }
 
+.portfolio-nav .navbar-brand:focus-visible,
+.portfolio-nav .nav li a:focus-visible,
+.portfolio-nav .navbar-toggle:focus-visible,
+.action-primary:focus-visible,
+.action-secondary:focus-visible,
+.project-card > a:focus-visible,
+.friend-card a:focus-visible,
+.footer-links a:focus-visible,
+.note-item a:focus-visible {
+  outline: 3px solid var(--signal);
+  outline-offset: 4px;
+  border-radius: 6px;
+}
+
 .portfolio-nav .navbar-toggle {
   border: 1px solid rgba(255, 255, 255, 0.28);
   border-radius: 8px;

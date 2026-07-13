@@ -24,14 +24,14 @@
 </footer>
 
 <!-- jQuery -->
-<script src="{{ "/js/jquery.min.js" | prepend: site.baseurl }}"></script>
+<script src="{{ "/js/jquery.min.js" | prepend: site.baseurl }}" defer></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="{{ "/js/bootstrap.min.js" | prepend: site.baseurl }}"></script>
+<script src="{{ "/js/bootstrap.min.js" | prepend: site.baseurl }}" defer></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="{{ "/js/hux-blog.min.js" | prepend: site.baseurl }}"></script>
-<script src="{{ "/js/portfolio-effects.js?v=" | append: site.asset_version | prepend: site.baseurl }}"></script>
+<script src="{{ "/js/hux-blog.min.js" | prepend: site.baseurl }}" defer></script>
+<script src="{{ "/js/portfolio-effects.js?v=" | append: site.asset_version | prepend: site.baseurl }}" defer></script>
 
 <!-- Service Worker -->
 {% if site.service-worker %}
@@ -60,14 +60,16 @@
 
 <!-- jquery.tagcloud.js -->
 <script>
-    if (window.jQuery && $('#tag_cloud').length !== 0) {
-        async('{{ "/js/jquery.tagcloud.js" | prepend: site.baseurl }}', function () {
-            $.fn.tagcloud.defaults = {
-                color: {start: '#737373', end: '#0f766e'}
-            };
-            $('#tag_cloud a').tagcloud();
-        });
-    }
+    window.addEventListener('DOMContentLoaded', function () {
+        if (window.jQuery && $('#tag_cloud').length !== 0) {
+            async('{{ "/js/jquery.tagcloud.js" | prepend: site.baseurl }}', function () {
+                $.fn.tagcloud.defaults = {
+                    color: {start: '#737373', end: '#0f766e'}
+                };
+                $('#tag_cloud a').tagcloud();
+            });
+        }
+    });
 </script>
 
 <!-- Google Analytics -->

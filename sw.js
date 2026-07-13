@@ -1,10 +1,11 @@
 const CACHE_PREFIX = 'project-lab-';
-const CACHE_VERSION = 'project-lab-20260710-v1';
+const CACHE_VERSION = 'project-lab-20260713-v1';
 const PRECACHE = `${CACHE_VERSION}-precache`;
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`;
 const PRECACHE_URLS = [
   '/',
   '/offline.html',
+  '/img/home-bg.webp',
   '/css/bootstrap.min.css',
   '/css/hux-blog.min.css',
   '/css/portfolio.css',
